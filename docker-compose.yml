@@ -1,0 +1,23 @@
+services:
+  mysql-source:
+    image: mysql:8.0
+    container_name: mysql-source
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: ecommerce_db
+    ports:
+      - "3306:3306"
+
+  airflow-platform:
+    image: apache/airflow:2.7.1-python3.10
+    container_name: airflow-platform
+    user: root
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=sqlite:////opt/airflow/airflow.db
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+    volumes:
+      - .:/opt/airflow
+    ports:
+      - "8081:8080"
+    command: standalone

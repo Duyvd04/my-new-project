@@ -1,0 +1,13 @@
+# Ignore dữ liệu (Vì quá nặng và chứa thông tin cá nhân)
+data/
+logs/
+
+# Ignore môi trường ảo và cache
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# Ignore các file tạm của Spark
+checkpoint/
+spark-warehouse/
